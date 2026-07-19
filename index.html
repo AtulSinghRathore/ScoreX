@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ScoreX virtual sports market demo" />
+    <title>ScoreX — Live Sports Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#sports"><span>Score</span>X</a>
+      <nav aria-label="Primary navigation">
+        <button class="nav-link active" data-view="sports">Sports</button>
+        <button class="nav-link" data-view="live">Live</button>
+        <button class="nav-link" data-view="results">Results</button>
+        <button class="nav-link admin-only" data-view="admin">Admin Console</button>
+      </nav>
+      <div class="account"><span class="coin-mark">S</span><strong id="balance">25,000 SXC</strong><button id="accountButton">Demo account</button></div>
+    </header>
+
+    <div class="feed-bar"><span class="pulse"></span><strong>DEMO LIVE FEED</strong><span>Scores and prices refresh every 4 seconds</span><small>Virtual ScoreX Coin only · no cash value</small></div>
+
+    <main id="sports" class="layout">
+      <aside class="sidebar">
+        <p class="overline">Sports</p>
+        <button class="sport-filter selected" data-sport="All">◉ All <b>6</b></button>
+        <button class="sport-filter" data-sport="Cricket">● Cricket <b>3</b></button>
+        <button class="sport-filter" data-sport="Football">⬡ Football <b>2</b></button>
+        <button class="sport-filter" data-sport="Tennis">◌ Tennis <b>1</b></button>
+        <hr />
+        <p class="overline">Quick links</p>
+        <button id="liveOnlyButton">● Live now</button>
+        <button id="clearFilterButton">↺ All markets</button>
+        <div class="sidebar-note"><span>VIRTUAL ONLY</span><strong>ScoreX Coin</strong><p>Use SXC to explore markets. It is not money and cannot be transferred or redeemed.</p></div>
+      </aside>
+
+      <section class="content">
+        <section class="hero">
+          <div><p class="overline lime">Live matches</p><h1>Fast scores.<br /><em>Clear markets.</em></h1><p>Explore live sports with virtual ScoreX Coin.</p><button id="heroLiveButton">View live matches</button></div>
+          <div class="hero-score"><span><i></i> LIVE · T20</span><p>West Indies</p><strong id="heroRuns">146/4</strong><p id="heroOvers">17.3 overs</p><div class="balls"><b>1</b><b>4</b><b>0</b><b class="wicket">W</b><b>2</b><b>•</b></div></div>
+        </section>
+
+        <div class="section-head"><div><p class="overline">Market board</p><h2 id="marketTitle">Featured events</h2></div><label class="switch"><input id="liveToggle" type="checkbox" /><span></span>Live only</label></div>
+        <div class="column-label"><span>Event</span><span>1</span><span>X</span><span>2</span><span></span></div>
+        <div id="eventList" class="event-list"></div>
+      </section>
+
+      <aside class="slip">
+        <div class="tabs"><button class="tab active" data-tab="slip">Bet slip <b id="slipCount">0</b></button><button class="tab" data-tab="open">Open bets <b id="openCount">0</b></button></div>
+        <div id="slipPanel">
+          <div id="emptySlip" class="empty"><div>＋</div><h3>Your bet slip is empty</h3><p>Select a market price to add it here.</p></div>
+          <div id="slipItems"></div>
+          <div class="stake-box"><label for="stake">Virtual stake <small>ScoreX Coin</small></label><div class="stake-input"><span>S</span><input id="stake" type="number" min="1" value="500" /></div><div class="quick-stakes"><button data-stake="100">+100</button><button data-stake="500">+500</button><button data-stake="1000">+1K</button><button data-stake="5000">+5K</button></div><div class="return"><span>Potential return</span><strong id="potentialReturn">0 SXC</strong></div><button id="placeBet" class="place" disabled>Place virtual bet</button><p class="fineprint">Demo only · no deposits, withdrawals, or cash prizes.</p></div>
+        </div>
+        <div id="openPanel" class="hidden"><div id="openBets" class="open-bets"></div></div>
+      </aside>
+    </main>
+
+    <section id="admin" class="admin hidden">
+      <header class="admin-head"><div><p class="overline">Restricted area</p><h2>ScoreX Admin Console</h2></div><button id="backToSports">← Back to sports</button></header>
+      <div class="stat-grid"><article><span>Virtual users</span><strong>1,248</strong></article><article><span>Live events</span><strong id="liveCount">4</strong></article><article><span>Active markets</span><strong>165</strong></article><article><span>Suspended markets</span><strong>3</strong></article></div>
+      <div class="admin-grid">
+        <section class="panel"><div class="panel-head"><div><p class="overline">Access control</p><h3>Admin accounts</h3></div><button id="newAdminButton">+ New admin</button></div><div id="adminList"></div></section>
+        <section class="panel"><div class="panel-head"><div><p class="overline">Traceability</p><h3>Audit log</h3></div></div><div id="auditLog" class="audit"></div></section>
+      </div>
+      <section class="panel market-admin"><div class="panel-head"><div><p class="overline">Market controls</p><h3>Live market status</h3></div><span class="role-note">Market Manager or Super Admin</span></div><div id="marketControls"></div></section>
+    </section>
+
+    <dialog id="adminDialog"><form method="dialog" id="adminForm"><header><div><p class="overline">Access control</p><h3>Create admin account</h3></div><button value="cancel" class="close">×</button></header><label>Name<input id="adminName" required placeholder="e.g. Priya Sharma" /></label><label>Email<input id="adminEmail" type="email" required placeholder="admin@scorex.demo" /></label><label>Role<select id="adminRole"><option>ADMIN</option><option>MARKET_MANAGER</option><option>SUPPORT_AGENT</option><option>VIEWER</option></select></label><p class="dialog-note">Only SUPER_ADMIN may create or deactivate admin accounts. This prototype stores accounts locally in this browser.</p><button class="create" value="default">Create admin</button></form></dialog>
+    <div id="toast" class="toast hidden"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
