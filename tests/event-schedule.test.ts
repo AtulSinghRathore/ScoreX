@@ -43,8 +43,10 @@ describe('event schedule', () => {
   });
 
   it('labels stale upcoming data as delayed', () => {
-    const details = scheduleDetails(upcoming('2026-08-15T09:00:00Z'), now, timeZone);
+    const stale = upcoming('2026-08-15T09:00:00Z');
+    const details = scheduleDetails(stale, now, timeZone);
     expect(details.overdue).toBe(true);
     expect(details.groupLabel).toContain('Delayed');
+    expect(matchesScheduleFilter(stale, 'today', now, timeZone)).toBe(false);
   });
 });

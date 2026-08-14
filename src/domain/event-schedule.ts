@@ -112,7 +112,7 @@ export function matchesScheduleFilter(
 ): boolean {
   if (filter === 'all') return true;
   const details = scheduleDetails(event, now, timeZone);
-  if (filter === 'today') return details.groupKey === '2-today' || details.groupKey === '1-delayed';
+  if (filter === 'today') return details.groupKey === '2-today';
   if (filter === 'tomorrow') return details.groupKey === '3-tomorrow';
   return details.groupKey.startsWith('4-') || details.groupKey === '8-tbc';
 }

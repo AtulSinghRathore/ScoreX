@@ -61,6 +61,12 @@ export function formatPlacedTime(value: string): string {
   }).format(date);
 }
 
+export function localTimeZoneName(now = new Date()): string {
+  return new Intl.DateTimeFormat('en-IN', {timeZoneName: 'short'})
+    .formatToParts(now)
+    .find(part => part.type === 'timeZoneName')?.value || 'local time';
+}
+
 export function formatRelativeTime(date: Date | null): string {
   if (!date || Number.isNaN(date.getTime())) return 'Waiting for first update';
   const seconds = Math.max(0, Math.round((Date.now() - date.getTime()) / 1000));

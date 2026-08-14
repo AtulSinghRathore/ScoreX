@@ -1,7 +1,7 @@
 import {marketHeading, visibleEvents} from '../../domain/selectors';
 import {scheduleDetails} from '../../domain/event-schedule';
 import {columnLabels} from '../../domain/virtual-market';
-import {teamInitials} from '../../shared/format';
+import {localTimeZoneName, teamInitials} from '../../shared/format';
 import {escapeHtml} from '../../shared/security';
 import {SUPPORTED_SPORTS, type AppState, type Sport, type SportEvent} from '../../domain/types';
 import type {AppElements} from '../elements';
@@ -51,8 +51,7 @@ export function renderEvents(elements: AppElements, state: AppState): void {
     return;
   }
   const events = visibleEvents(state);
-  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Local time';
-  elements.eventSummary.textContent = `${events.length} match${events.length === 1 ? '' : 'es'} · ${timeZone.replaceAll('_', ' ')}`;
+  elements.eventSummary.textContent = `${events.length} match${events.length === 1 ? '' : 'es'} · Times shown in ${localTimeZoneName()}`;
   if (!events.length) {
     const message = state.feed.error && !state.events.length
       ? 'The live-score provider could not be reached. Try refreshing shortly.'
