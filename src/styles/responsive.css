@@ -1,0 +1,199 @@
+@media (max-width: 1050px) {
+  .layout {
+    grid-template-columns: 175px 1fr;
+  }
+
+  .slip {
+    position: fixed;
+    z-index: 5;
+    right: 0;
+    width: 310px;
+  }
+
+  .content {
+    padding-right: 330px;
+  }
+
+  .hero-score {
+    display: none;
+  }
+
+  .column-label,
+  .event {
+    grid-template-columns: minmax(230px, 1fr) repeat(3, 58px) 55px;
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    height: 58px;
+    padding: 0 13px;
+  }
+
+  .topbar nav {
+    display: none;
+  }
+
+  .account strong {
+    font-size: 11px;
+  }
+
+  .feed-bar {
+    padding: 0 13px;
+  }
+
+  .feed-bar > span:not(.pulse),
+  .feed-bar small {
+    display: none;
+  }
+
+  .layout {
+    display: block;
+  }
+
+  .sidebar {
+    display: flex;
+    overflow: auto;
+    padding: 8px;
+    border-width: 0 0 1px;
+  }
+
+  .sidebar .overline,
+  .sidebar hr,
+  .sidebar-note,
+  .sidebar button:nth-of-type(n + 6) {
+    display: none;
+  }
+
+  .sidebar button {
+    width: auto;
+    white-space: nowrap;
+  }
+
+  .content {
+    padding: 12px 12px 210px;
+  }
+
+  .hero {
+    min-height: 170px;
+    padding: 23px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .section-head {
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .market-actions {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+  }
+
+  .refresh-scores {
+    padding: 5px 8px;
+  }
+
+  .slip {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 195px;
+    border-width: 1px 0 0;
+  }
+
+  .empty {
+    padding: 16px;
+  }
+
+  .empty > div {
+    display: none;
+  }
+
+  .empty h3 {
+    margin: 3px;
+  }
+
+  .slip-item {
+    display: none;
+  }
+
+  .stake-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    padding: 12px;
+  }
+
+  .stake-box label,
+  .quick-stakes,
+  .fineprint {
+    display: none;
+  }
+
+  .stake-input {
+    margin: 0;
+  }
+
+  .return {
+    padding: 0;
+    border: 0;
+  }
+
+  .place {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  .column-label {
+    display: none;
+  }
+
+  .event {
+    grid-template-columns: minmax(175px, 1fr) repeat(3, 46px) 43px;
+    gap: 4px;
+    padding: 10px 7px;
+  }
+
+  .team-logo {
+    display: none;
+  }
+
+  .price {
+    min-height: 43px;
+    font-size: 9px;
+  }
+
+  .market-count {
+    padding: 4px 1px;
+    font-size: 9px;
+  }
+
+  .market-count span {
+    font-size: 8px;
+  }
+
+  .admin {
+    margin: 22px auto;
+    padding: 0 12px;
+  }
+
+  .stat-grid,
+  .admin-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-grid .panel {
+    grid-column: 1 / -1;
+  }
+
+  .admin-head h2 {
+    font-size: 22px;
+  }
+}

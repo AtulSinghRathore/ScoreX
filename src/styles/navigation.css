@@ -1,0 +1,137 @@
+.brand {
+  color: white;
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: -1.7px;
+  text-decoration: none;
+}
+
+.brand span {
+  color: var(--color-lime);
+}
+
+.nav-link {
+  padding: 0 18px;
+  border: 0;
+  background: transparent;
+  color: #b7d2c7;
+  font-weight: 750;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  background: #0c513d;
+  box-shadow: inset 0 -3px var(--color-lime);
+  color: white;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-left: auto;
+}
+
+.coin-mark {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--color-lime);
+  color: #164033;
+  font-weight: 900;
+}
+
+.account button,
+.admin-head button {
+  padding: 8px 12px;
+  border: 1px solid #78a497;
+  border-radius: 7px;
+  background: transparent;
+  color: white;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.feed-bar a {
+  color: var(--color-lime);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.feed-bar a:hover {
+  text-decoration: underline;
+}
+
+.pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #56e39c;
+  box-shadow: 0 0 0 4px #56e39c2d;
+}
+
+.pulse.error {
+  background: #ffb45f;
+  box-shadow: 0 0 0 4px #ffb45f2d;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #50615a;
+  font-weight: 720;
+  text-align: left;
+}
+
+.sidebar button:hover,
+.sidebar .selected {
+  background: #e8f5ed;
+  color: var(--color-green);
+}
+
+.sidebar button b {
+  float: right;
+  padding: 2px 6px;
+  border-radius: 9px;
+  background: #edf1ee;
+  font-size: 10px;
+}
+
+.sidebar hr {
+  margin: 18px 7px;
+  border: 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.sidebar-note {
+  margin: 24px 4px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #12332b;
+  color: white;
+}
+
+.sidebar-note span {
+  color: var(--color-lime);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.sidebar-note strong {
+  display: block;
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.sidebar-note p {
+  margin: 0;
+  color: #bad0c7;
+  font-size: 10px;
+  line-height: 1.5;
+}

@@ -1,0 +1,82 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 70px;
+  padding: 0 28px;
+  background: var(--color-deep-green);
+  color: white;
+}
+
+.topbar nav {
+  display: flex;
+  height: 100%;
+}
+
+.feed-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 37px;
+  padding: 0 28px;
+  background: #092d25;
+  color: #d7eee6;
+  font-size: 11px;
+}
+
+.feed-bar small {
+  margin-left: auto;
+  color: #a5c6ba;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 195px minmax(550px, 1fr) 325px;
+  max-width: 1540px;
+  min-height: calc(100vh - 107px);
+  margin: auto;
+}
+
+.sidebar,
+.slip {
+  border-color: var(--color-line);
+  border-style: solid;
+  background: var(--color-paper);
+}
+
+.sidebar {
+  padding: 24px 14px;
+  border-width: 0 1px 0 0;
+}
+
+.content {
+  min-width: 0;
+  padding: 20px;
+}
+
+.slip {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+  border-width: 0 0 0 1px;
+}
+
+.admin {
+  max-width: 1240px;
+  margin: 38px auto;
+  padding: 0 22px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 14px;
+}

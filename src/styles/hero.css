@@ -1,0 +1,91 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 212px;
+  overflow: hidden;
+  padding: 28px 33px;
+  border-radius: var(--radius-large);
+  background: linear-gradient(120deg, #087550, #063a2d);
+  color: white;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 36px;
+  letter-spacing: -1.8px;
+  line-height: 0.98;
+}
+
+.hero h1 em {
+  color: var(--color-lime);
+  font-style: normal;
+}
+
+.hero > div > p:not(.overline) {
+  color: #c0d9d0;
+  font-size: 12px;
+}
+
+.hero button {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--color-lime);
+  color: #17372d;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.hero-score {
+  width: 270px;
+  padding: 17px;
+  border: 1px solid #ffffff28;
+  border-radius: 13px;
+  background: #ffffff14;
+}
+
+.hero-score > span {
+  color: #d6e8e1;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+
+.hero-score > span i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5ce5a1;
+}
+
+.hero-team {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #ffffff1f;
+}
+
+.hero-team p {
+  min-width: 0;
+  margin: 0 !important;
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hero-team strong {
+  font-size: 21px;
+}
+
+.hero-score > small {
+  display: block;
+  margin-top: 10px;
+  color: #bcd2ca;
+  font-size: 9px;
+  line-height: 1.4;
+}

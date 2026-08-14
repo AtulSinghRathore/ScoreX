@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="ScoreX real live sports scores with virtual ScoreX Coin predictions" />
     <title>ScoreX — Real Live Sports & SXC Predictions</title>
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="topbar">
@@ -16,10 +15,22 @@
         <button class="nav-link" data-view="results">Results</button>
         <button class="nav-link admin-only" data-view="admin">Admin Console</button>
       </nav>
-      <div class="account"><span class="coin-mark">S</span><strong id="balance">25,000 SXC</strong><button id="accountButton">Local profile</button></div>
+      <div class="account">
+        <span class="coin-mark">S</span>
+        <strong id="balance">25,000 SXC</strong>
+        <button id="accountButton">Local profile</button>
+      </div>
     </header>
 
-    <div class="feed-bar" aria-live="polite"><span id="feedPulse" class="pulse"></span><strong id="feedLabel">CONNECTING LIVE DATA</strong><span id="feedMessage">Fetching real sports scores</span><small><span id="lastUpdated">Waiting for first update</span> · <a href="https://sportscore.com/" rel="dofollow" title="Sports data by SportScore">Powered by SportScore</a></small></div>
+    <div class="feed-bar" aria-live="polite">
+      <span id="feedPulse" class="pulse"></span>
+      <strong id="feedLabel">CONNECTING LIVE DATA</strong>
+      <span id="feedMessage">Fetching real sports scores</span>
+      <small>
+        <span id="lastUpdated">Waiting for first update</span> ·
+        <a href="https://sportscore.com/" rel="dofollow" title="Sports data by SportScore">Powered by SportScore</a>
+      </small>
+    </div>
 
     <main id="sports" class="layout">
       <aside class="sidebar">
@@ -33,43 +44,125 @@
         <p class="overline">Quick links</p>
         <button id="liveOnlyButton">● Live now</button>
         <button id="clearFilterButton">↺ All markets</button>
-        <div class="sidebar-note"><span>VIRTUAL ONLY</span><strong>ScoreX Coin</strong><p>Use SXC to explore markets. It is not money and cannot be transferred or redeemed.</p></div>
+        <div class="sidebar-note">
+          <span>VIRTUAL ONLY</span>
+          <strong>ScoreX Coin</strong>
+          <p>Use SXC to explore markets. It is not money and cannot be transferred or redeemed.</p>
+        </div>
       </aside>
 
       <section class="content">
         <section class="hero">
-          <div><p class="overline lime">Real match data</p><h1>Fast scores.<br /><em>Virtual predictions.</em></h1><p>Follow real matches and use ScoreX Coin—never cash.</p><button id="heroLiveButton">View live matches</button></div>
-          <div class="hero-score"><span><i></i> <b id="heroMatchType">LIVE SPORTS</b></span><div class="hero-team"><p id="heroHome">Connecting…</p><strong id="heroRuns">—</strong></div><div class="hero-team"><p id="heroAway">Waiting for live data</p><strong id="heroAwayScore">—</strong></div><small id="heroStatus">SportScore feed</small></div>
+          <div>
+            <p class="overline lime">Real match data</p>
+            <h1>Fast scores.<br /><em>Virtual predictions.</em></h1>
+            <p>Follow real matches and use ScoreX Coin—never cash.</p>
+            <button id="heroLiveButton">View live matches</button>
+          </div>
+          <div class="hero-score">
+            <span><i></i> <b id="heroMatchType">LIVE SPORTS</b></span>
+            <div class="hero-team"><p id="heroHome">Connecting…</p><strong id="heroHomeScore">—</strong></div>
+            <div class="hero-team"><p id="heroAway">Waiting for live data</p><strong id="heroAwayScore">—</strong></div>
+            <small id="heroStatus">SportScore feed</small>
+          </div>
         </section>
 
-        <div class="section-head"><div><p class="overline">Live score board · SXC multipliers are virtual</p><h2 id="marketTitle">Live & upcoming events</h2></div><div class="market-actions"><button id="refreshScores" class="refresh-scores">Refreshing…</button><label class="switch"><input id="liveToggle" type="checkbox" /><span></span>Live only</label></div></div>
+        <div class="section-head">
+          <div>
+            <p class="overline">Live score board · SXC multipliers are virtual</p>
+            <h2 id="marketTitle">Live & upcoming events</h2>
+          </div>
+          <div class="market-actions">
+            <button id="refreshScores" class="refresh-scores">Refreshing…</button>
+            <label class="switch">
+              <input id="liveToggle" type="checkbox" />
+              <span></span>Live only
+            </label>
+          </div>
+        </div>
         <div class="column-label"><span>Event</span><span>1</span><span>X</span><span>2</span><span></span></div>
         <div id="eventList" class="event-list"></div>
       </section>
 
       <aside class="slip">
-        <div class="tabs"><button class="tab active" data-tab="slip">Bet slip <b id="slipCount">0</b></button><button class="tab" data-tab="open">Open bets <b id="openCount">0</b></button></div>
-        <div id="slipPanel">
-          <div id="emptySlip" class="empty"><div>＋</div><h3>Your bet slip is empty</h3><p>Select a market price to add it here.</p></div>
-          <div id="slipItems"></div>
-          <div class="stake-box"><label for="stake">Virtual stake <small>ScoreX Coin</small></label><div class="stake-input"><span>S</span><input id="stake" type="number" min="1" value="500" /></div><div class="quick-stakes"><button data-stake="100">+100</button><button data-stake="500">+500</button><button data-stake="1000">+1K</button><button data-stake="5000">+5K</button></div><div class="return"><span>Potential return</span><strong id="potentialReturn">0 SXC</strong></div><button id="placeBet" class="place" disabled>Place SXC prediction</button><p class="fineprint">Virtual only · SXC has no cash value and cannot be purchased, transferred, or redeemed.</p></div>
+        <div class="tabs">
+          <button class="tab active" data-tab="slip">Prediction slip <b id="slipCount">0</b></button>
+          <button class="tab" data-tab="open">Open predictions <b id="openCount">0</b></button>
         </div>
-        <div id="openPanel" class="hidden"><div id="openBets" class="open-bets"></div></div>
+        <div id="slipPanel">
+          <div id="emptySlip" class="empty">
+            <div>＋</div>
+            <h3>Your prediction slip is empty</h3>
+            <p>Select an SXC multiplier to add it here.</p>
+          </div>
+          <div id="slipItems"></div>
+          <div class="stake-box">
+            <label for="stake">Virtual stake <small>ScoreX Coin</small></label>
+            <div class="stake-input"><span>S</span><input id="stake" type="number" min="1" value="500" /></div>
+            <div class="quick-stakes">
+              <button data-stake="100">+100</button>
+              <button data-stake="500">+500</button>
+              <button data-stake="1000">+1K</button>
+              <button data-stake="5000">+5K</button>
+            </div>
+            <div class="return"><span>Potential return</span><strong id="potentialReturn">0 SXC</strong></div>
+            <button id="placePrediction" class="place" disabled>Place SXC prediction</button>
+            <p class="fineprint">Virtual only · SXC has no cash value and cannot be purchased, transferred, or redeemed.</p>
+          </div>
+        </div>
+        <div id="openPanel" class="hidden"><div id="openPredictions" class="open-bets"></div></div>
       </aside>
     </main>
 
     <section id="admin" class="admin hidden">
-      <header class="admin-head"><div><p class="overline">Restricted area</p><h2>ScoreX Admin Console</h2></div><button id="backToSports">← Back to sports</button></header>
-      <div class="stat-grid"><article><span>Local profiles</span><strong>1</strong></article><article><span>Live events</span><strong id="liveCount">0</strong></article><article><span>Active SXC picks</span><strong id="activeMarketCount">0</strong></article><article><span>Suspended markets</span><strong id="suspendedCount">0</strong></article></div>
-      <div class="admin-grid">
-        <section class="panel"><div class="panel-head"><div><p class="overline">Access control</p><h3>Admin accounts</h3></div><button id="newAdminButton">+ New admin</button></div><div id="adminList"></div></section>
-        <section class="panel"><div class="panel-head"><div><p class="overline">Traceability</p><h3>Audit log</h3></div></div><div id="auditLog" class="audit"></div></section>
+      <header class="admin-head">
+        <div><p class="overline">Restricted area</p><h2>ScoreX Admin Console</h2></div>
+        <button id="backToSports">← Back to sports</button>
+      </header>
+      <div class="stat-grid">
+        <article><span>Local profiles</span><strong>1</strong></article>
+        <article><span>Live events</span><strong id="liveCount">0</strong></article>
+        <article><span>Active SXC picks</span><strong id="activeMarketCount">0</strong></article>
+        <article><span>Suspended markets</span><strong id="suspendedCount">0</strong></article>
       </div>
-      <section class="panel market-admin"><div class="panel-head"><div><p class="overline">Market controls</p><h3>Live market status</h3></div><span class="role-note">Market Manager or Super Admin</span></div><div id="marketControls"></div></section>
+      <div class="admin-grid">
+        <section class="panel">
+          <div class="panel-head"><div><p class="overline">Access control</p><h3>Admin accounts</h3></div><button id="newAdminButton">+ New admin</button></div>
+          <div id="adminList"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><div><p class="overline">Traceability</p><h3>Audit log</h3></div></div>
+          <div id="auditLog" class="audit"></div>
+        </section>
+      </div>
+      <section class="panel market-admin">
+        <div class="panel-head"><div><p class="overline">Market controls</p><h3>Live market status</h3></div><span class="role-note">Market Manager or Super Admin</span></div>
+        <div id="marketControls"></div>
+      </section>
     </section>
 
-    <dialog id="adminDialog"><form method="dialog" id="adminForm"><header><div><p class="overline">Access control</p><h3>Create admin account</h3></div><button value="cancel" class="close">×</button></header><label>Name<input id="adminName" required placeholder="e.g. Priya Sharma" /></label><label>Email<input id="adminEmail" type="email" required placeholder="admin@scorex.demo" /></label><label>Role<select id="adminRole"><option>ADMIN</option><option>MARKET_MANAGER</option><option>SUPPORT_AGENT</option><option>VIEWER</option></select></label><p class="dialog-note">Only SUPER_ADMIN may create or deactivate admin accounts. Accounts remain browser-local until the planned Cloudflare D1 authentication layer is added.</p><button class="create" value="default">Create admin</button></form></dialog>
+    <dialog id="adminDialog">
+      <form id="adminForm">
+        <header>
+          <div><p class="overline">Access control</p><h3>Create admin account</h3></div>
+          <button id="closeAdminDialog" type="button" class="close" aria-label="Close">×</button>
+        </header>
+        <label>Name<input id="adminName" required placeholder="e.g. Priya Sharma" /></label>
+        <label>Email<input id="adminEmail" type="email" required placeholder="admin@scorex.demo" /></label>
+        <label>Role
+          <select id="adminRole">
+            <option>ADMIN</option>
+            <option>MARKET_MANAGER</option>
+            <option>SUPPORT_AGENT</option>
+            <option>VIEWER</option>
+          </select>
+        </label>
+        <p class="dialog-note">Only SUPER_ADMIN may create or deactivate admin accounts. Accounts remain browser-local until the planned Cloudflare D1 authentication layer is added.</p>
+        <button class="create" type="submit">Create admin</button>
+      </form>
+    </dialog>
+
     <div id="toast" class="toast hidden"></div>
-    <script src="app.js"></script>
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

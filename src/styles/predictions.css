@@ -1,0 +1,212 @@
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.tab {
+  height: 49px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: white;
+  color: #7b8883;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.tab.active {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
+.tab b {
+  padding: 2px 5px;
+  border-radius: 10px;
+  background: #edf1ef;
+  font-size: 9px;
+}
+
+.empty {
+  padding: 55px 28px;
+  color: #86928d;
+  text-align: center;
+}
+
+.empty > div {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin: auto;
+  border-radius: 50%;
+  background: #edf7f1;
+  color: #16825b;
+  font-size: 22px;
+}
+
+.empty h3 {
+  color: #465850;
+  font-size: 13px;
+}
+
+.empty p {
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.slip-item {
+  position: relative;
+  margin: 0 13px;
+  padding: 11px 25px 11px 0;
+  border-bottom: 1px solid #e5e9e6;
+}
+
+.slip-item small,
+.slip-item p {
+  margin: 3px 0;
+  color: #77847f;
+  font-size: 9px;
+}
+
+.slip-item strong {
+  font-size: 12px;
+}
+
+.slip-item b {
+  position: absolute;
+  right: 2px;
+  bottom: 14px;
+  color: var(--color-green);
+}
+
+.remove {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  border: 0;
+  background: transparent;
+  color: #8a9691;
+  font-size: 18px;
+}
+
+.stake-box {
+  padding: 15px;
+  border-top: 1px solid var(--color-line);
+}
+
+.stake-box label,
+.return {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.stake-box label small {
+  color: #8b9691;
+}
+
+.stake-input {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  margin-top: 7px;
+  padding: 0 10px;
+  border: 1px solid #ccd6d1;
+  border-radius: 7px;
+}
+
+.stake-input input {
+  width: 100%;
+  padding-left: 8px;
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.quick-stakes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  margin: 7px 0 15px;
+}
+
+.quick-stakes button {
+  padding: 7px 0;
+  border: 1px solid #dde3df;
+  border-radius: 5px;
+  background: #f4f6f4;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.return {
+  padding-top: 11px;
+  border-top: 1px dashed #cfd8d3;
+}
+
+.return strong {
+  color: var(--color-green);
+  font-size: 15px;
+}
+
+.place {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--color-green);
+  color: white;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.place:disabled {
+  cursor: not-allowed;
+  background: #bdc7c2;
+}
+
+.fineprint {
+  color: #909b96;
+  font-size: 8px;
+  text-align: center;
+}
+
+.open-bets {
+  padding: 12px;
+}
+
+.open-bet {
+  margin-bottom: 8px;
+  padding: 11px;
+  border: 1px solid #dde5e0;
+  border-radius: 8px;
+}
+
+.open-bet span {
+  color: var(--color-green);
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.open-bet p {
+  margin: 5px 0;
+  color: #6e7d76;
+  font-size: 10px;
+}
+
+.toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  padding: 11px 16px;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  background: #12352c;
+  box-shadow: 0 9px 35px #0004;
+  color: white;
+  font-size: 11px;
+  font-weight: 750;
+}

@@ -1,0 +1,15 @@
+:root {
+  --color-background: #f5f5ef;
+  --color-ink: #112621;
+  --color-muted: #71807a;
+  --color-line: #d9e0dc;
+  --color-green: #08754d;
+  --color-deep-green: #063e2d;
+  --color-lime: #d7f44d;
+  --color-red: #e65751;
+  --color-paper: #ffffff;
+  --radius-small: 6px;
+  --radius-medium: 10px;
+  --radius-large: 16px;
+  --shadow-dialog: 0 20px 70px #0005;
+}
