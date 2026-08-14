@@ -19,7 +19,7 @@ const STEPS: readonly TourStep[] = [
   },
   {
     title: 'Set your SXC stake',
-    body: 'Enter a virtual stake or use the quick-add buttons. SXC is free, local to this browser, and has no cash value.',
+    body: 'Enter an SXC stake or use the quick-add buttons. Your demo balance is stored locally in this browser.',
     selectors: ['[data-tour="stake-box"]']
   },
   {
