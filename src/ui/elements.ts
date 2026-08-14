@@ -18,6 +18,9 @@ export interface AppElements {
   heroStatus: HTMLElement;
   liveToggle: HTMLInputElement;
   balance: HTMLElement;
+  loginButton: HTMLButtonElement;
+  registerButton: HTMLButtonElement;
+  accountButton: HTMLButtonElement;
   stake: HTMLInputElement;
   slipCount: HTMLElement;
   potentialReturn: HTMLElement;
@@ -35,15 +38,64 @@ export interface AppElements {
   auditLog: HTMLElement;
   marketControls: HTMLElement;
   liveCount: HTMLElement;
-  activeMarketCount: HTMLElement;
   suspendedCount: HTMLElement;
-  adminCount: HTMLElement;
+  linkedUserCount: HTMLElement;
+  pendingTopUpCount: HTMLElement;
+  adminPublicId: HTMLElement;
+  copyAdminId: HTMLButtonElement;
+  linkedUserList: HTMLElement;
+  topUpRequestList: HTMLElement;
   adminDialog: HTMLDialogElement;
   adminForm: HTMLFormElement;
   adminName: HTMLInputElement;
   adminEmail: HTMLInputElement;
   adminRole: HTMLSelectElement;
   adminFormError: HTMLElement;
+  authDialog: HTMLDialogElement;
+  closeAuthDialog: HTMLButtonElement;
+  loginForm: HTMLFormElement;
+  loginKind: HTMLSelectElement;
+  loginEmail: HTMLInputElement;
+  loginPassword: HTMLInputElement;
+  loginError: HTMLElement;
+  registerForm: HTMLFormElement;
+  registerName: HTMLInputElement;
+  registerEmail: HTMLInputElement;
+  registerPassword: HTMLInputElement;
+  registerAdminId: HTMLInputElement;
+  registerError: HTMLElement;
+  profileDialog: HTMLDialogElement;
+  profileName: HTMLElement;
+  profileMeta: HTMLElement;
+  profileBalance: HTMLElement;
+  profilePredictionCount: HTMLElement;
+  profileWonCount: HTMLElement;
+  profileEarnings: HTMLElement;
+  linkedAdminLabel: HTMLElement;
+  profilePredictions: HTMLElement;
+  walletActivity: HTMLElement;
+  userProfileContent: HTMLElement;
+  adminProfileContent: HTMLElement;
+  addCoinsButton: HTMLButtonElement;
+  logoutButton: HTMLButtonElement;
+  topUpDialog: HTMLDialogElement;
+  topUpForm: HTMLFormElement;
+  topUpSxcAmount: HTMLInputElement;
+  topUpPaymentAmount: HTMLElement;
+  topUpPreview: HTMLElement;
+  topUpQrImage: HTMLImageElement;
+  topUpPreviewAmount: HTMLElement;
+  topUpUpiId: HTMLElement;
+  topUpRequestId: HTMLElement;
+  walletAdjustmentDialog: HTMLDialogElement;
+  walletAdjustmentForm: HTMLFormElement;
+  walletAdjustmentUser: HTMLElement;
+  walletAdjustmentUserId: HTMLInputElement;
+  walletAdjustmentRequestId: HTMLInputElement;
+  walletAdjustmentType: HTMLSelectElement;
+  walletAdjustmentAmount: HTMLInputElement;
+  walletAdjustmentNote: HTMLInputElement;
+  walletAdjustmentError: HTMLElement;
   tourLayer: HTMLElement;
   tourCard: HTMLElement;
   tourProgress: HTMLElement;
@@ -82,6 +134,9 @@ export function getAppElements(): AppElements {
     heroStatus: required('heroStatus'),
     liveToggle: required<HTMLInputElement>('liveToggle'),
     balance: required('balance'),
+    loginButton: required<HTMLButtonElement>('loginButton'),
+    registerButton: required<HTMLButtonElement>('registerButton'),
+    accountButton: required<HTMLButtonElement>('accountButton'),
     stake: required<HTMLInputElement>('stake'),
     slipCount: required('slipCount'),
     potentialReturn: required('potentialReturn'),
@@ -99,15 +154,64 @@ export function getAppElements(): AppElements {
     auditLog: required('auditLog'),
     marketControls: required('marketControls'),
     liveCount: required('liveCount'),
-    activeMarketCount: required('activeMarketCount'),
     suspendedCount: required('suspendedCount'),
-    adminCount: required('adminCount'),
+    linkedUserCount: required('linkedUserCount'),
+    pendingTopUpCount: required('pendingTopUpCount'),
+    adminPublicId: required('adminPublicId'),
+    copyAdminId: required<HTMLButtonElement>('copyAdminId'),
+    linkedUserList: required('linkedUserList'),
+    topUpRequestList: required('topUpRequestList'),
     adminDialog: required<HTMLDialogElement>('adminDialog'),
     adminForm: required<HTMLFormElement>('adminForm'),
     adminName: required<HTMLInputElement>('adminName'),
     adminEmail: required<HTMLInputElement>('adminEmail'),
     adminRole: required<HTMLSelectElement>('adminRole'),
     adminFormError: required('adminFormError'),
+    authDialog: required<HTMLDialogElement>('authDialog'),
+    closeAuthDialog: required<HTMLButtonElement>('closeAuthDialog'),
+    loginForm: required<HTMLFormElement>('loginForm'),
+    loginKind: required<HTMLSelectElement>('loginKind'),
+    loginEmail: required<HTMLInputElement>('loginEmail'),
+    loginPassword: required<HTMLInputElement>('loginPassword'),
+    loginError: required('loginError'),
+    registerForm: required<HTMLFormElement>('registerForm'),
+    registerName: required<HTMLInputElement>('registerName'),
+    registerEmail: required<HTMLInputElement>('registerEmail'),
+    registerPassword: required<HTMLInputElement>('registerPassword'),
+    registerAdminId: required<HTMLInputElement>('registerAdminId'),
+    registerError: required('registerError'),
+    profileDialog: required<HTMLDialogElement>('profileDialog'),
+    profileName: required('profileName'),
+    profileMeta: required('profileMeta'),
+    profileBalance: required('profileBalance'),
+    profilePredictionCount: required('profilePredictionCount'),
+    profileWonCount: required('profileWonCount'),
+    profileEarnings: required('profileEarnings'),
+    linkedAdminLabel: required('linkedAdminLabel'),
+    profilePredictions: required('profilePredictions'),
+    walletActivity: required('walletActivity'),
+    userProfileContent: required('userProfileContent'),
+    adminProfileContent: required('adminProfileContent'),
+    addCoinsButton: required<HTMLButtonElement>('addCoinsButton'),
+    logoutButton: required<HTMLButtonElement>('logoutButton'),
+    topUpDialog: required<HTMLDialogElement>('topUpDialog'),
+    topUpForm: required<HTMLFormElement>('topUpForm'),
+    topUpSxcAmount: required<HTMLInputElement>('topUpSxcAmount'),
+    topUpPaymentAmount: required('topUpPaymentAmount'),
+    topUpPreview: required('topUpPreview'),
+    topUpQrImage: required<HTMLImageElement>('topUpQrImage'),
+    topUpPreviewAmount: required('topUpPreviewAmount'),
+    topUpUpiId: required('topUpUpiId'),
+    topUpRequestId: required('topUpRequestId'),
+    walletAdjustmentDialog: required<HTMLDialogElement>('walletAdjustmentDialog'),
+    walletAdjustmentForm: required<HTMLFormElement>('walletAdjustmentForm'),
+    walletAdjustmentUser: required('walletAdjustmentUser'),
+    walletAdjustmentUserId: required<HTMLInputElement>('walletAdjustmentUserId'),
+    walletAdjustmentRequestId: required<HTMLInputElement>('walletAdjustmentRequestId'),
+    walletAdjustmentType: required<HTMLSelectElement>('walletAdjustmentType'),
+    walletAdjustmentAmount: required<HTMLInputElement>('walletAdjustmentAmount'),
+    walletAdjustmentNote: required<HTMLInputElement>('walletAdjustmentNote'),
+    walletAdjustmentError: required('walletAdjustmentError'),
     tourLayer: required('tourLayer'),
     tourCard: required('tourCard'),
     tourProgress: required('tourProgress'),

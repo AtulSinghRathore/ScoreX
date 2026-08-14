@@ -19,8 +19,10 @@
       <div class="account">
         <button id="howItWorksButton" class="demo-trigger" data-tour="demo-button">▶ Demo</button>
         <img class="coin-mark" src="/scorex-coin.svg" alt="ScoreX Coin" />
-        <strong id="balance">25,000 SXC</strong>
-        <button id="accountButton">Local profile</button>
+        <strong id="balance">Sign in for SXC</strong>
+        <button id="loginButton">Log in</button>
+        <button id="registerButton" class="register-button">Create account</button>
+        <button id="accountButton" class="hidden">Profile</button>
       </div>
     </header>
 
@@ -140,12 +142,26 @@
         <button id="backToSports">← Back to sports</button>
       </header>
       <div class="stat-grid">
-        <article><span>Admin accounts</span><strong id="adminCount">0</strong></article>
+        <article><span>Linked users</span><strong id="linkedUserCount">0</strong></article>
+        <article><span>Pending top-ups</span><strong id="pendingTopUpCount">0</strong></article>
         <article><span>Live events</span><strong id="liveCount">0</strong></article>
-        <article><span>Active SXC picks</span><strong id="activeMarketCount">0</strong></article>
         <article><span>Suspended markets</span><strong id="suspendedCount">0</strong></article>
       </div>
+      <section class="panel referral-panel">
+        <div><p class="overline">Shareable admin ID</p><h3 id="adminPublicId">—</h3><p>Users enter this ID during registration. It is separate from your login email.</p></div>
+        <button id="copyAdminId" type="button">Copy ID</button>
+      </section>
       <div class="admin-grid">
+        <section class="panel">
+          <div class="panel-head"><div><p class="overline">Client management</p><h3>Linked users</h3></div></div>
+          <div id="linkedUserList"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><div><p class="overline">Manual approval</p><h3>Top-up requests</h3></div></div>
+          <div id="topUpRequestList"></div>
+        </section>
+      </div>
+      <div class="admin-grid secondary-admin-grid">
         <section class="panel">
           <div class="panel-head"><div><p class="overline">Access control</p><h3>Admin accounts</h3></div><button id="newAdminButton">+ Add admin</button></div>
           <div id="adminList"></div>
@@ -160,6 +176,86 @@
         <div id="marketControls"></div>
       </section>
     </section>
+
+    <dialog id="authDialog" class="auth-dialog">
+      <button id="closeAuthDialog" type="button" class="close floating-close" aria-label="Close">×</button>
+      <div class="auth-brand"><img src="/scorex-coin.svg" alt="" /><span>ScoreX Identity</span></div>
+      <div class="auth-tabs">
+        <button type="button" class="active" data-auth-mode="login">Log in</button>
+        <button type="button" data-auth-mode="register">Create user account</button>
+      </div>
+      <form id="loginForm" class="auth-form">
+        <h3>Welcome back</h3>
+        <p>Scores stay public. Sign in to use predictions, wallet and account tools.</p>
+        <label>Account type<select id="loginKind"><option value="user">Normal user</option><option value="admin">Admin</option></select></label>
+        <label>Email<input id="loginEmail" type="email" autocomplete="email" required placeholder="you@example.com" /></label>
+        <label>Password<input id="loginPassword" type="password" autocomplete="current-password" required /></label>
+        <p id="loginError" class="form-error hidden" role="alert"></p>
+        <button class="create" type="submit">Log in</button>
+        <div class="demo-credentials"><strong>Portfolio demo</strong><span>User: demo@scorex.demo</span><span>Admin: superadmin@scorex.demo</span><span>Password: ScoreX@2026</span></div>
+      </form>
+      <form id="registerForm" class="auth-form hidden">
+        <h3>Create user account</h3>
+        <p>Your admin’s shareable ID links your account to the correct wallet manager.</p>
+        <label>Full name<input id="registerName" required minlength="2" maxlength="60" autocomplete="name" /></label>
+        <label>Email<input id="registerEmail" type="email" required autocomplete="email" /></label>
+        <label>Password<input id="registerPassword" type="password" required minlength="8" autocomplete="new-password" /></label>
+        <label>Admin ID <small>Required</small><input id="registerAdminId" required autocomplete="off" placeholder="SXA-ADMIN-0000" /></label>
+        <p id="registerError" class="form-error hidden" role="alert"></p>
+        <button class="create" type="submit">Create account</button>
+      </form>
+    </dialog>
+
+    <dialog id="profileDialog" class="profile-dialog">
+      <header>
+        <div><p class="overline">My ScoreX</p><h3 id="profileName">Profile</h3><p id="profileMeta"></p></div>
+        <div class="dialog-header-actions"><button id="logoutButton" type="button">Log out</button><button id="closeProfileDialog" type="button" class="close" aria-label="Close">×</button></div>
+      </header>
+      <div id="userProfileContent">
+        <div class="profile-stats">
+          <article><span>Wallet</span><strong id="profileBalance">0 SXC</strong></article>
+          <article><span>Predictions</span><strong id="profilePredictionCount">0</strong></article>
+          <article><span>Won</span><strong id="profileWonCount">0</strong></article>
+          <article><span>Earned</span><strong id="profileEarnings">0 SXC</strong></article>
+        </div>
+        <div class="profile-actions"><button id="addCoinsButton" class="create" type="button">＋ Add SXC</button><span id="linkedAdminLabel"></span></div>
+        <div class="profile-grid">
+          <section><div class="panel-head"><h4>Prediction history</h4></div><div id="profilePredictions"></div></section>
+          <section><div class="panel-head"><h4>Wallet activity</h4></div><div id="walletActivity"></div></section>
+        </div>
+      </div>
+      <div id="adminProfileContent" class="hidden admin-profile-summary"></div>
+    </dialog>
+
+    <dialog id="topUpDialog" class="topup-dialog">
+      <header><div><p class="overline">Payment preview</p><h3>Add ScoreX Coin</h3></div><button id="closeTopUpDialog" type="button" class="close" aria-label="Close">×</button></header>
+      <form id="topUpForm">
+        <label>SXC amount<input id="topUpSxcAmount" type="number" min="500" step="100" value="1000" required /></label>
+        <div class="conversion-preview"><span>Preview amount</span><strong id="topUpPaymentAmount">₹100.00</strong></div>
+        <p>Your linked admin reviews this request and manually updates your wallet after payment confirmation.</p>
+        <button class="create" type="submit">Generate QR preview</button>
+      </form>
+      <div id="topUpPreview" class="qr-preview hidden">
+        <img id="topUpQrImage" alt="Fixed-amount QR preview" />
+        <span>Fixed amount preview</span><strong id="topUpPreviewAmount">₹0.00</strong>
+        <p>UPI ID <b id="topUpUpiId">—</b></p>
+        <small id="topUpRequestId"></small>
+        <button id="finishTopUpPreview" type="button">Done</button>
+      </div>
+    </dialog>
+
+    <dialog id="walletAdjustmentDialog" class="wallet-adjustment-dialog">
+      <form id="walletAdjustmentForm">
+        <header><div><p class="overline">Wallet control</p><h3 id="walletAdjustmentUser">Adjust SXC wallet</h3></div><button id="closeWalletAdjustmentDialog" type="button" class="close" aria-label="Close">×</button></header>
+        <input id="walletAdjustmentUserId" type="hidden" />
+        <input id="walletAdjustmentRequestId" type="hidden" />
+        <label>Action<select id="walletAdjustmentType"><option value="credit">Add SXC</option><option value="debit">Remove SXC</option></select></label>
+        <label>Amount<input id="walletAdjustmentAmount" type="number" min="100" step="100" required /></label>
+        <label>Reason<input id="walletAdjustmentNote" maxlength="100" required placeholder="Payment confirmed / correction" /></label>
+        <p id="walletAdjustmentError" class="form-error hidden" role="alert"></p>
+        <button class="create" type="submit">Update wallet</button>
+      </form>
+    </dialog>
 
     <dialog id="adminDialog">
       <form id="adminForm">
@@ -178,7 +274,7 @@
           </select>
         </label>
         <p id="adminFormError" class="form-error hidden" role="alert"></p>
-        <p class="dialog-note">Only SUPER_ADMIN may create or deactivate admin accounts. Accounts remain browser-local until the planned Cloudflare D1 authentication layer is added.</p>
+        <p class="dialog-note">Only SUPER_ADMIN may create or deactivate admin accounts. A shareable Admin ID and the temporary demo password ScoreX@2026 are created automatically.</p>
         <button class="create" type="submit">Create admin</button>
       </form>
     </dialog>

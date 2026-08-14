@@ -21,7 +21,8 @@ export function toggleSelection(
       match: `${event.home} v ${event.away}`,
       label: labels[outcomeIndex] || '',
       market: 'ScoreX match prediction',
-      multiplier
+      multiplier,
+      outcomeIndex
     }
   ];
 }
@@ -52,17 +53,24 @@ export function stakeValidationMessage(
 
 export function createOpenPrediction(
   selections: readonly PredictionSelection[],
-  stake: number
+  stake: number,
+  userId: string
 ): OpenPrediction {
   const first = selections[0];
   if (!first) throw new Error('At least one selection is required');
   const multiplier = combinedMultiplier(selections);
   return {
     ...first,
+    id: `prediction-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+    userId,
+    selections: selections.map(selection => ({...selection})),
     label: selections.length > 1 ? `${selections.length}-fold accumulator` : first.label,
     multiplier,
     stake,
     potentialReturn: stake * multiplier,
-    placedAt: new Date().toISOString()
+    placedAt: new Date().toISOString(),
+    status: 'open',
+    payout: 0,
+    settledAt: ''
   };
 }

@@ -8,7 +8,15 @@ const event: SportEvent = {
   homeScore: '—', awayScore: '—', marketCount: 3, multipliers: [2, 3, 4], suspended: false, sourceUrl: ''
 };
 const admins: AdminUser[] = [{
-  id: 1, name: 'Atul Singh', email: 'admin@scorex.demo', role: 'SUPER_ADMIN', active: true, lastLogin: 'Now'
+  id: 1,
+  publicId: 'SXA-ATUL-01',
+  name: 'Atul Singh',
+  email: 'admin@scorex.demo',
+  passwordHash: 'demo-hash',
+  upiId: 'scorex.atul@upi',
+  role: 'SUPER_ADMIN',
+  active: true,
+  lastLogin: 'Now'
 }];
 
 describe('admin service', () => {

@@ -6,6 +6,10 @@ export type EventStatus = 'live' | 'upcoming' | 'finished';
 export type ViewMode = 'sports' | 'live' | 'upcoming' | 'results' | 'admin';
 export type ScheduleFilter = 'all' | 'today' | 'tomorrow' | 'later';
 export type AdminRole = 'SUPER_ADMIN' | 'ADMIN' | 'MARKET_MANAGER' | 'SUPPORT_AGENT' | 'VIEWER';
+export type AccountKind = 'user' | 'admin';
+export type PredictionStatus = 'open' | 'won' | 'lost';
+export type WalletTransactionKind = 'admin_credit' | 'admin_debit' | 'prediction_stake' | 'prediction_return';
+export type TopUpStatus = 'pending' | 'credited' | 'declined';
 
 export interface SportScoreMatchDto {
   home?: string | null;
@@ -54,12 +58,18 @@ export interface PredictionSelection {
   label: string;
   market: string;
   multiplier: number;
+  outcomeIndex: number;
 }
 
 export interface OpenPrediction extends PredictionSelection {
+  userId: string;
+  selections: PredictionSelection[];
   stake: number;
   potentialReturn: number;
   placedAt: string;
+  status: PredictionStatus;
+  payout: number;
+  settledAt: string;
 }
 
 export interface AdminUser {
@@ -69,6 +79,52 @@ export interface AdminUser {
   role: AdminRole;
   active: boolean;
   lastLogin: string;
+  publicId: string;
+  passwordHash: string;
+  upiId: string;
+}
+
+export interface ClientUser {
+  id: string;
+  name: string;
+  email: string;
+  passwordHash: string;
+  adminPublicId: string;
+  active: boolean;
+  createdAt: string;
+}
+
+export interface AuthSession {
+  kind: AccountKind;
+  accountId: string;
+}
+
+export interface WalletAccount {
+  userId: string;
+  balance: number;
+}
+
+export interface WalletTransaction {
+  id: string;
+  userId: string;
+  adminPublicId: string;
+  kind: WalletTransactionKind;
+  amount: number;
+  balanceAfter: number;
+  note: string;
+  createdAt: string;
+}
+
+export interface TopUpRequest {
+  id: string;
+  userId: string;
+  adminPublicId: string;
+  sxcAmount: number;
+  paymentAmount: number;
+  upiId: string;
+  status: TopUpStatus;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface AuditEntry {
@@ -92,8 +148,12 @@ export interface AppState {
   liveOnly: boolean;
   visibleEventLimit: number;
   selections: PredictionSelection[];
-  balance: number;
-  openPredictions: OpenPrediction[];
+  authSession: AuthSession | null;
+  users: ClientUser[];
+  wallets: WalletAccount[];
+  walletTransactions: WalletTransaction[];
+  predictions: OpenPrediction[];
+  topUpRequests: TopUpRequest[];
   admins: AdminUser[];
   audit: AuditEntry[];
   suspendedEventIds: string[];
@@ -106,8 +166,12 @@ export interface LiveCache {
 }
 
 export interface PersistedSession {
-  balance: number;
-  openPredictions: OpenPrediction[];
+  authSession: AuthSession | null;
+  users: ClientUser[];
+  wallets: WalletAccount[];
+  walletTransactions: WalletTransaction[];
+  predictions: OpenPrediction[];
+  topUpRequests: TopUpRequest[];
   admins: AdminUser[];
   audit: AuditEntry[];
   suspendedEventIds: string[];

@@ -47,10 +47,6 @@
     display: none;
   }
 
-  .account #accountButton {
-    display: none;
-  }
-
   .account .demo-trigger {
     padding: 6px 8px;
     font-size: 10px;

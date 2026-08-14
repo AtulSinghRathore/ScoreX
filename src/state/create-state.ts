@@ -5,7 +5,7 @@ import type {AppState} from '../domain/types';
 import type {BrowserStorage} from '../services/browser-storage';
 
 export function createState(storage: BrowserStorage): AppState {
-  const session = storage.loadSession(APP_CONFIG.startingBalance);
+  const session = storage.loadSession();
   const cache = storage.loadLiveCache();
   const cacheDate = cache?.updated ? new Date(cache.updated) : null;
   return {
@@ -16,8 +16,12 @@ export function createState(storage: BrowserStorage): AppState {
     liveOnly: false,
     visibleEventLimit: APP_CONFIG.eventPageSize,
     selections: [],
-    balance: Number.isFinite(session.balance) ? session.balance : APP_CONFIG.startingBalance,
-    openPredictions: Array.isArray(session.openPredictions) ? session.openPredictions : [],
+    authSession: session.authSession ?? null,
+    users: Array.isArray(session.users) ? session.users : [],
+    wallets: Array.isArray(session.wallets) ? session.wallets : [],
+    walletTransactions: Array.isArray(session.walletTransactions) ? session.walletTransactions : [],
+    predictions: Array.isArray(session.predictions) ? session.predictions : [],
+    topUpRequests: Array.isArray(session.topUpRequests) ? session.topUpRequests : [],
     admins: Array.isArray(session.admins) ? session.admins : [],
     audit: Array.isArray(session.audit) ? session.audit : [],
     suspendedEventIds: Array.isArray(session.suspendedEventIds) ? session.suspendedEventIds : [],

@@ -1,11 +1,15 @@
-import {DEFAULT_ADMINS, DEFAULT_AUDIT, STORAGE_KEYS} from '../config/app';
+import {DEFAULT_ADMINS, DEFAULT_AUDIT, DEFAULT_PREDICTIONS, DEFAULT_USERS, DEFAULT_WALLETS, DEFAULT_WALLET_TRANSACTIONS, STORAGE_KEYS} from '../config/app';
 import type {LiveCache, PersistedSession} from '../domain/types';
 
 export class BrowserStorage {
-  loadSession(startingBalance: number): PersistedSession {
+  loadSession(): PersistedSession {
     return this.read(STORAGE_KEYS.session, {
-      balance: startingBalance,
-      openPredictions: [],
+      authSession: null,
+      users: structuredClone(DEFAULT_USERS),
+      wallets: structuredClone(DEFAULT_WALLETS),
+      walletTransactions: structuredClone(DEFAULT_WALLET_TRANSACTIONS),
+      predictions: structuredClone(DEFAULT_PREDICTIONS),
+      topUpRequests: [],
       admins: structuredClone(DEFAULT_ADMINS),
       audit: structuredClone(DEFAULT_AUDIT),
       suspendedEventIds: []

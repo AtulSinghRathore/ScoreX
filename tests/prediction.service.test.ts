@@ -36,9 +36,11 @@ describe('prediction service', () => {
   it('calculates and records a virtual return', () => {
     const selections = toggleSelection([], event, 0);
     expect(potentialReturn(selections, 100)).toBe(180);
-    const prediction = createOpenPrediction(selections, 100);
+    const prediction = createOpenPrediction(selections, 100, 'user-1');
     expect(prediction.potentialReturn).toBe(180);
     expect(prediction.stake).toBe(100);
+    expect(prediction.userId).toBe('user-1');
+    expect(prediction.status).toBe('open');
   });
 
   it('normalizes stake values and explains invalid input', () => {

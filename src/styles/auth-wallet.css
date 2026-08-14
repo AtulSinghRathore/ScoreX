@@ -1,0 +1,384 @@
+.register-button {
+  border-color: var(--color-lime) !important;
+  background: var(--color-lime) !important;
+  color: #12352c !important;
+}
+
+.auth-dialog {
+  width: min(480px, 92vw);
+  overflow: hidden;
+}
+
+.floating-close {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 12px;
+}
+
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 24px 16px;
+  background: #0a3b2f;
+  color: white;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.auth-brand img {
+  width: 38px;
+  height: 38px;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.auth-tabs button {
+  padding: 13px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: white;
+  color: #76847e;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.auth-tabs button.active {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
+.auth-form {
+  padding: 20px 24px 24px;
+}
+
+.auth-form h3 {
+  font-size: 23px;
+}
+
+.auth-form > p:not(.form-error) {
+  color: #6d7b75;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.demo-credentials {
+  display: grid;
+  gap: 3px;
+  margin-top: 13px;
+  padding: 11px 13px;
+  border: 1px dashed #bdd2c8;
+  border-radius: 8px;
+  background: #f1f8f4;
+  color: #617169;
+  font-size: 9px;
+}
+
+.demo-credentials strong {
+  color: var(--color-green);
+  font-size: 10px;
+}
+
+.profile-dialog {
+  width: min(940px, 94vw);
+  max-height: 88vh;
+  padding: 22px;
+  overflow: auto;
+}
+
+.profile-dialog > header,
+.topup-dialog > header {
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.profile-dialog h3 {
+  font-size: 26px;
+}
+
+#profileMeta {
+  margin: 5px 0 0;
+  color: #718078;
+  font-size: 10px;
+}
+
+.dialog-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dialog-header-actions #logoutButton,
+.qr-preview button {
+  padding: 8px 11px;
+  border: 1px solid #d4ddd8;
+  border-radius: 6px;
+  background: white;
+  color: #5b6962;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+}
+
+.profile-stats article {
+  padding: 13px;
+  border-radius: 9px;
+  background: #eff7f3;
+}
+
+.profile-stats span {
+  display: block;
+  color: #718078;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.profile-stats strong {
+  display: block;
+  margin-top: 6px;
+  color: #12352c;
+  font-size: 16px;
+}
+
+.profile-actions {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 14px 0;
+}
+
+.profile-actions .create {
+  width: auto;
+  margin: 0;
+}
+
+.profile-actions span {
+  color: #75827c;
+  font-size: 9px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.profile-grid > section {
+  min-height: 210px;
+  padding: 14px;
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+}
+
+.profile-grid h4 {
+  margin: 0;
+}
+
+.history-item,
+.wallet-item {
+  padding: 11px 0;
+  border-top: 1px solid #e5ebe7;
+}
+
+.history-item strong,
+.wallet-item strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+}
+
+.history-item p {
+  margin: 4px 0;
+  color: #66766e;
+  font-size: 10px;
+}
+
+.history-item small,
+.wallet-item small {
+  display: block;
+  margin-top: 3px;
+  color: #829089;
+  font-size: 8px;
+}
+
+.prediction-status {
+  padding: 3px 5px;
+  border-radius: 4px;
+  background: #e9f1ed;
+  color: #617169;
+  font-size: 7px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.prediction-status.won {
+  background: #ddf5e7;
+  color: #0a7c4d;
+}
+
+.prediction-status.lost {
+  background: #fae5e3;
+  color: #b4413c;
+}
+
+.wallet-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.wallet-item b {
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.wallet-item b.credit {
+  color: #078153;
+}
+
+.wallet-item b.debit {
+  color: #b54841;
+}
+
+.compact-empty {
+  padding: 30px 10px;
+  color: #839089;
+  font-size: 10px;
+  text-align: center;
+}
+
+.admin-profile-summary {
+  padding: 28px;
+  border-radius: 12px;
+  background: #eff8f3;
+  text-align: center;
+}
+
+.admin-profile-summary img {
+  width: 70px;
+}
+
+.admin-profile-summary > strong {
+  display: block;
+  margin: 6px;
+  color: var(--color-green);
+  font-size: 25px;
+  letter-spacing: 0.05em;
+}
+
+.topup-dialog {
+  width: min(450px, 92vw);
+  padding: 22px;
+}
+
+.topup-dialog form {
+  padding: 0;
+}
+
+.topup-dialog form > p {
+  color: #718078;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.conversion-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: #edf7f1;
+  font-size: 10px;
+}
+
+.conversion-preview strong {
+  color: var(--color-green);
+  font-size: 17px;
+}
+
+.qr-preview {
+  display: grid;
+  place-items: center;
+  padding: 8px 0 2px;
+  text-align: center;
+}
+
+.qr-preview img {
+  width: 220px;
+  height: 220px;
+  border: 10px solid white;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px #07281c1d;
+}
+
+.qr-preview > span,
+.qr-preview > small {
+  margin-top: 8px;
+  color: #7c8983;
+  font-size: 8px;
+}
+
+.qr-preview > strong {
+  margin: 3px 0;
+  color: var(--color-green);
+  font-size: 22px;
+}
+
+.qr-preview p {
+  margin: 8px;
+  font-size: 10px;
+}
+
+.wallet-adjustment-dialog {
+  width: min(440px, 92vw);
+}
+
+@media (max-width: 760px) {
+  .account .register-button,
+  .account #balance,
+  .account .coin-mark {
+    display: none;
+  }
+
+  .profile-dialog {
+    padding: 16px;
+  }
+
+  .profile-stats,
+  .profile-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .profile-grid > section {
+    grid-column: 1 / -1;
+  }
+
+  .profile-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 430px) {
+  .profile-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .auth-form {
+    padding: 18px;
+  }
+}

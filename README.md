@@ -1,6 +1,6 @@
 # ScoreX
 
-ScoreX is a modular TypeScript web application for real live-sports scores and virtual **ScoreX Coin (SXC)** predictions. SXC is non-transferable, has no cash value, and cannot be purchased or redeemed.
+ScoreX is a modular TypeScript web application for real live-sports scores, local user/admin accounts, and **ScoreX Coin (SXC)** predictions.
 
 ## Architecture
 
@@ -11,9 +11,11 @@ src/
 ├── domain/                 Types, provider mapping, selectors, market rules
 ├── features/
 │   ├── admin/              Admin account and market-control logic
+│   ├── auth/               Local login, registration and admin-ID association
 │   ├── demo/               Accessible guided product tour
 │   ├── live/               Provider refresh/rate-limit policy
-│   └── predictions/        Selection, multiplier, and return logic
+│   ├── predictions/        Selection, multiplier, and return logic
+│   └── wallet/             SXC ledger, top-up requests and QR generation
 ├── services/               SportScore client and browser persistence
 ├── shared/                 Formatting, hashing, and output safety helpers
 ├── state/                  Initial state construction
@@ -27,6 +29,8 @@ The code follows these boundaries:
 - Provider DTOs are converted into ScoreX domain models at the service boundary.
 - Renderers receive application state; they do not fetch or persist data.
 - Prediction and admin rules are implemented as testable domain functions.
+- Every client account stores a shareable Admin ID, separate from admin login credentials.
+- Every wallet mutation produces a transaction-ledger entry and rejects negative balances.
 - Browser storage is isolated behind one service for later replacement by Cloudflare D1.
 - API output is escaped before HTML rendering, and external URLs are restricted to HTTPS.
 
@@ -57,6 +61,25 @@ SportScore supplies match data, not bookmaker odds. ScoreX generates determinist
 - Market suspensions persist across provider refreshes in the same browser.
 - The interface has keyboard focus indicators, reduced-motion support, status announcements and mobile layouts.
 
+## Account and wallet demo
+
+Visitors can browse scores and schedules without an account. Selecting a market, opening prediction history, using an SXC wallet, or entering the Admin Console requires the appropriate login.
+
+- Normal-user registration requires an active shareable Admin ID.
+- User profiles show SXC balance, prediction history, wins, returns and wallet activity.
+- “Add SXC” creates a fixed-amount QR preview and a pending request for the linked admin.
+- Linked admins can credit or debit a user wallet, approve a top-up request, and see the action in the audit log.
+- SXC conversion and QR payment details are portfolio-demo data; there is no payment gateway or automatic crediting.
+
+Demo credentials:
+
+| Account | Email | Password | Shareable Admin ID |
+| --- | --- | --- | --- |
+| Normal user | `demo@scorex.demo` | `ScoreX@2026` | — |
+| Super admin | `superadmin@scorex.demo` | `ScoreX@2026` | `SXA-ATUL-01` |
+
+The browser hashes passwords before local persistence, but this frontend-only mode is intentionally not production authentication. A real multi-user release needs server-side sessions, rate limiting, password-reset/email-verification flows, a database transaction for each wallet update, and authoritative server-side authorization.
+
 ## Commands
 
 ```bash
@@ -83,4 +106,4 @@ The built `dist` directory is deployed to the `scorex` Worker, SPA fallback rout
 
 ## Current persistence boundary
 
-Live scores are real and can be requested directly because SportScore is CORS-open and does not require a secret. User/admin accounts, SXC balances, predictions, and audit logs remain browser-local. Secure accounts shared across devices require Cloudflare Workers authentication and D1 persistence.
+Live scores are real and can be requested directly because SportScore is CORS-open and does not require a secret. User/admin accounts, SXC balances, predictions, top-up requests, and audit logs remain browser-local. Secure accounts shared across devices require Cloudflare Workers authentication and D1 persistence.

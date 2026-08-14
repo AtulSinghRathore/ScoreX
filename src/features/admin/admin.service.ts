@@ -1,4 +1,5 @@
 import type {AdminRole, AdminUser, AuditEntry, SportEvent} from '../../domain/types';
+import {createAdminPublicId} from '../auth/auth.service';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -27,13 +28,18 @@ export function adminValidationError(
 }
 
 export function createAdmin(name: string, email: string, role: AdminRole): AdminUser {
+  const id = Date.now();
+  const publicId = createAdminPublicId(name, id);
   return {
-    id: Date.now(),
+    id,
     name: name.trim(),
     email: email.trim().toLowerCase(),
     role,
     active: true,
-    lastLogin: 'Never'
+    lastLogin: 'Never',
+    publicId,
+    passwordHash: '59d0f2d6b8e726e4a0d70e93c4b17d3491bc505825e6313516331e55c0e83155',
+    upiId: `${publicId.toLowerCase().replaceAll('-', '.')}@upi`
   };
 }
 
