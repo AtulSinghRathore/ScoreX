@@ -4,11 +4,15 @@ export const APP_CONFIG = {
   providerName: 'SportScore',
   matchesEndpoint: 'https://sportscore.com/api/widget/matches/',
   providerHome: 'https://sportscore.com/',
-  matchesPerSport: 30,
+  matchesPerSport: 50,
+  providerDailyRequestLimit: 10_000,
+  providerCacheMs: 60_000,
   refreshIntervalMs: 90_000,
+  manualRefreshCooldownMs: 60_000,
   requestTimeoutMs: 12_000,
   sourceIdentifier: 'scorex',
-  startingBalance: 25_000
+  startingBalance: 25_000,
+  eventPageSize: 24
 } as const;
 
 export const STORAGE_KEYS = {

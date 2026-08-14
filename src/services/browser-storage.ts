@@ -7,7 +7,8 @@ export class BrowserStorage {
       balance: startingBalance,
       openPredictions: [],
       admins: structuredClone(DEFAULT_ADMINS),
-      audit: structuredClone(DEFAULT_AUDIT)
+      audit: structuredClone(DEFAULT_AUDIT),
+      suspendedEventIds: []
     });
   }
 

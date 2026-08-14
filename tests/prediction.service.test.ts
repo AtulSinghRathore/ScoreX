@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest';
-import {createOpenPrediction, potentialReturn, toggleSelection} from '../src/features/predictions/prediction.service';
+import {createOpenPrediction, normalizeStake, potentialReturn, stakeValidationMessage, toggleSelection} from '../src/features/predictions/prediction.service';
 import type {SportEvent} from '../src/domain/types';
 
 const event: SportEvent = {
@@ -39,5 +39,13 @@ describe('prediction service', () => {
     const prediction = createOpenPrediction(selections, 100);
     expect(prediction.potentialReturn).toBe(180);
     expect(prediction.stake).toBe(100);
+  });
+
+  it('normalizes stake values and explains invalid input', () => {
+    const selections = toggleSelection([], event, 0);
+    expect(normalizeStake(50_000, 25_000)).toBe(25_000);
+    expect(normalizeStake(Number.NaN, 25_000)).toBe(0);
+    expect(stakeValidationMessage(selections, 99, 25_000)).toContain('Minimum');
+    expect(stakeValidationMessage(selections, 500, 25_000)).toContain('Ready');
   });
 });

@@ -27,6 +27,11 @@ describe('SportScore client', () => {
     const result = await new SportScoreClient().fetchAll(new AbortController().signal);
 
     expect(fetchMock).toHaveBeenCalledTimes(4);
+    for (const [input] of fetchMock.mock.calls) {
+      const url = new URL(String(input));
+      expect(url.searchParams.get('limit')).toBe('50');
+      expect(url.searchParams.get('src')).toBe('scorex');
+    }
     expect(result.failedSports).toEqual(['Basketball']);
     expect(result.successfulSports).toEqual(['Cricket', 'Football', 'Tennis']);
     expect(result.events).toHaveLength(3);

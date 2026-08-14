@@ -116,6 +116,11 @@
   border-radius: 7px;
 }
 
+.stake-input img {
+  width: 25px;
+  height: 25px;
+}
+
 .stake-input input {
   width: 100%;
   padding-left: 8px;
@@ -127,9 +132,21 @@
 
 .quick-stakes {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 5px;
   margin: 7px 0 15px;
+}
+
+.stake-help {
+  min-height: 24px;
+  margin: -7px 0 10px;
+  color: #6f7d76;
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.stake-help.error {
+  color: #ac433e;
 }
 
 .quick-stakes button {
@@ -151,9 +168,30 @@
   font-size: 15px;
 }
 
+.return span b {
+  margin-left: 3px;
+  color: var(--color-green);
+}
+
+.slip-actions {
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.slip-actions > button:first-child {
+  border: 1px solid #d3dcd7;
+  border-radius: 7px;
+  background: #fff;
+  color: #66756e;
+  font-size: 10px;
+  font-weight: 800;
+}
+
 .place {
   width: 100%;
-  margin-top: 14px;
+  margin-top: 0;
   padding: 12px;
   border: 0;
   border-radius: 7px;
@@ -195,6 +233,13 @@
   margin: 5px 0;
   color: #6e7d76;
   font-size: 10px;
+}
+
+.open-bet time {
+  display: block;
+  margin-top: 7px;
+  color: #8a958f;
+  font-size: 8px;
 }
 
 .toast {

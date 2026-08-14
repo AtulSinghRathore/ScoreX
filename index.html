@@ -12,11 +12,13 @@
       <nav aria-label="Primary navigation">
         <button class="nav-link active" data-view="sports">Sports</button>
         <button class="nav-link" data-view="live">Live</button>
+        <button class="nav-link" data-view="upcoming" data-tour="upcoming-nav">Upcoming</button>
         <button class="nav-link" data-view="results">Results</button>
         <button class="nav-link admin-only" data-view="admin">Admin Console</button>
       </nav>
       <div class="account">
-        <span class="coin-mark">S</span>
+        <button id="howItWorksButton" class="demo-trigger" data-tour="demo-button">▶ Demo</button>
+        <img class="coin-mark" src="/scorex-coin.svg" alt="ScoreX Coin" />
         <strong id="balance">25,000 SXC</strong>
         <button id="accountButton">Local profile</button>
       </div>
@@ -28,6 +30,7 @@
       <span id="feedMessage">Fetching real sports scores</span>
       <small>
         <span id="lastUpdated">Waiting for first update</span> ·
+        <span title="SportScore free tier limit">3,840 est. / 10,000 requests daily</span> ·
         <a href="https://sportscore.com/" rel="dofollow" title="Sports data by SportScore">Powered by SportScore</a>
       </small>
     </div>
@@ -43,10 +46,13 @@
         <hr />
         <p class="overline">Quick links</p>
         <button id="liveOnlyButton">● Live now</button>
+        <button id="upcomingButton">◷ Upcoming schedule</button>
+        <button id="sidebarDemoButton">▶ Guided demo</button>
         <button id="clearFilterButton">↺ All markets</button>
         <div class="sidebar-note">
+          <img src="/scorex-coin.svg" alt="" />
           <span>VIRTUAL ONLY</span>
-          <strong>ScoreX Coin</strong>
+          <strong>ScoreX Coin · SXC</strong>
           <p>Use SXC to explore markets. It is not money and cannot be transferred or redeemed.</p>
         </div>
       </aside>
@@ -57,7 +63,10 @@
             <p class="overline lime">Real match data</p>
             <h1>Fast scores.<br /><em>Virtual predictions.</em></h1>
             <p>Follow real matches and use ScoreX Coin—never cash.</p>
-            <button id="heroLiveButton">View live matches</button>
+            <div class="hero-actions">
+              <button id="heroLiveButton">View live matches</button>
+              <button id="heroUpcomingButton" class="secondary">Upcoming schedule</button>
+            </div>
           </div>
           <div class="hero-score">
             <span><i></i> <b id="heroMatchType">LIVE SPORTS</b></span>
@@ -80,8 +89,17 @@
             </label>
           </div>
         </div>
+        <div id="scheduleFilters" class="schedule-tools hidden" aria-label="Filter upcoming matches">
+          <div class="schedule-chips">
+            <button class="selected" data-schedule="all">All upcoming</button>
+            <button data-schedule="today">Today</button>
+            <button data-schedule="tomorrow">Tomorrow</button>
+            <button data-schedule="later">Later</button>
+          </div>
+          <p id="eventSummary">Times shown in your local timezone</p>
+        </div>
         <div class="column-label"><span>Event</span><span>1</span><span>X</span><span>2</span><span></span></div>
-        <div id="eventList" class="event-list"></div>
+        <div id="eventList" class="event-list" data-tour="event-board" aria-live="polite"></div>
       </section>
 
       <aside class="slip">
@@ -96,17 +114,19 @@
             <p>Select an SXC multiplier to add it here.</p>
           </div>
           <div id="slipItems"></div>
-          <div class="stake-box">
+          <div class="stake-box" data-tour="stake-box">
             <label for="stake">Virtual stake <small>ScoreX Coin</small></label>
-            <div class="stake-input"><span>S</span><input id="stake" type="number" min="1" value="500" /></div>
+            <div class="stake-input"><img src="/scorex-coin.svg" alt="" /><input id="stake" type="number" min="100" step="100" inputmode="numeric" value="500" aria-describedby="stakeHelp" /></div>
             <div class="quick-stakes">
-              <button data-stake="100">+100</button>
-              <button data-stake="500">+500</button>
-              <button data-stake="1000">+1K</button>
-              <button data-stake="5000">+5K</button>
+              <button data-stake-add="100">+100</button>
+              <button data-stake-add="500">+500</button>
+              <button data-stake-add="1000">+1K</button>
+              <button data-stake-add="5000">+5K</button>
+              <button data-stake-max="true">Max</button>
             </div>
-            <div class="return"><span>Potential return</span><strong id="potentialReturn">0 SXC</strong></div>
-            <button id="placePrediction" class="place" disabled>Place SXC prediction</button>
+            <p id="stakeHelp" class="stake-help">Quick amounts add to your stake. Maximum is your virtual balance.</p>
+            <div class="return"><span>Combined multiplier <b id="combinedMultiplier">—</b></span><strong id="potentialReturn">0 SXC</strong></div>
+            <div class="slip-actions"><button id="clearSlip" type="button">Clear</button><button id="placePrediction" class="place" data-tour="place-button" disabled>Place SXC prediction</button></div>
             <p class="fineprint">Virtual only · SXC has no cash value and cannot be purchased, transferred, or redeemed.</p>
           </div>
         </div>
@@ -120,14 +140,14 @@
         <button id="backToSports">← Back to sports</button>
       </header>
       <div class="stat-grid">
-        <article><span>Local profiles</span><strong>1</strong></article>
+        <article><span>Admin accounts</span><strong id="adminCount">0</strong></article>
         <article><span>Live events</span><strong id="liveCount">0</strong></article>
         <article><span>Active SXC picks</span><strong id="activeMarketCount">0</strong></article>
         <article><span>Suspended markets</span><strong id="suspendedCount">0</strong></article>
       </div>
       <div class="admin-grid">
         <section class="panel">
-          <div class="panel-head"><div><p class="overline">Access control</p><h3>Admin accounts</h3></div><button id="newAdminButton">+ New admin</button></div>
+          <div class="panel-head"><div><p class="overline">Access control</p><h3>Admin accounts</h3></div><button id="newAdminButton">+ Add admin</button></div>
           <div id="adminList"></div>
         </section>
         <section class="panel">
@@ -147,22 +167,32 @@
           <div><p class="overline">Access control</p><h3>Create admin account</h3></div>
           <button id="closeAdminDialog" type="button" class="close" aria-label="Close">×</button>
         </header>
-        <label>Name<input id="adminName" required placeholder="e.g. Priya Sharma" /></label>
-        <label>Email<input id="adminEmail" type="email" required placeholder="admin@scorex.demo" /></label>
+        <label>Name<input id="adminName" required minlength="2" maxlength="60" autocomplete="name" placeholder="e.g. Priya Sharma" /></label>
+        <label>Email<input id="adminEmail" type="email" required maxlength="254" autocomplete="email" placeholder="admin@scorex.demo" /></label>
         <label>Role
           <select id="adminRole">
-            <option>ADMIN</option>
-            <option>MARKET_MANAGER</option>
-            <option>SUPPORT_AGENT</option>
-            <option>VIEWER</option>
+            <option value="ADMIN">Administrator — manage accounts</option>
+            <option value="MARKET_MANAGER">Market manager — suspend markets</option>
+            <option value="SUPPORT_AGENT">Support agent — assist users</option>
+            <option value="VIEWER">Viewer — read only</option>
           </select>
         </label>
+        <p id="adminFormError" class="form-error hidden" role="alert"></p>
         <p class="dialog-note">Only SUPER_ADMIN may create or deactivate admin accounts. Accounts remain browser-local until the planned Cloudflare D1 authentication layer is added.</p>
         <button class="create" type="submit">Create admin</button>
       </form>
     </dialog>
 
-    <div id="toast" class="toast hidden"></div>
+    <div id="tourLayer" class="tour-layer hidden" aria-hidden="true">
+      <div id="tourCard" class="tour-card" role="dialog" aria-modal="true" aria-labelledby="tourTitle" aria-describedby="tourBody">
+        <button id="tourClose" class="tour-close" type="button" aria-label="Close guided demo">×</button>
+        <span id="tourProgress" class="tour-progress"></span>
+        <h3 id="tourTitle"></h3>
+        <p id="tourBody"></p>
+        <div class="tour-actions"><button id="tourBack" type="button">Back</button><button id="tourNext" type="button">Next</button></div>
+      </div>
+    </div>
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

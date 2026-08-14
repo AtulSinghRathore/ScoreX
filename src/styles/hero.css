@@ -37,6 +37,17 @@
   font-weight: 850;
 }
 
+.hero-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.hero button.secondary {
+  border: 1px solid #d7f44d80;
+  background: transparent;
+  color: var(--color-lime);
+}
+
 .hero-score {
   width: 270px;
   padding: 17px;

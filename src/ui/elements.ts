@@ -2,6 +2,8 @@ export interface AppElements {
   sportsView: HTMLElement;
   adminView: HTMLElement;
   marketTitle: HTMLElement;
+  scheduleFilters: HTMLElement;
+  eventSummary: HTMLElement;
   eventList: HTMLElement;
   feedLabel: HTMLElement;
   feedMessage: HTMLElement;
@@ -19,9 +21,12 @@ export interface AppElements {
   stake: HTMLInputElement;
   slipCount: HTMLElement;
   potentialReturn: HTMLElement;
+  combinedMultiplier: HTMLElement;
+  stakeHelp: HTMLElement;
   emptySlip: HTMLElement;
   slipItems: HTMLElement;
   placePrediction: HTMLButtonElement;
+  clearSlip: HTMLButtonElement;
   openCount: HTMLElement;
   openPredictions: HTMLElement;
   slipPanel: HTMLElement;
@@ -32,11 +37,21 @@ export interface AppElements {
   liveCount: HTMLElement;
   activeMarketCount: HTMLElement;
   suspendedCount: HTMLElement;
+  adminCount: HTMLElement;
   adminDialog: HTMLDialogElement;
   adminForm: HTMLFormElement;
   adminName: HTMLInputElement;
   adminEmail: HTMLInputElement;
   adminRole: HTMLSelectElement;
+  adminFormError: HTMLElement;
+  tourLayer: HTMLElement;
+  tourCard: HTMLElement;
+  tourProgress: HTMLElement;
+  tourTitle: HTMLElement;
+  tourBody: HTMLElement;
+  tourBack: HTMLButtonElement;
+  tourNext: HTMLButtonElement;
+  tourClose: HTMLButtonElement;
   toast: HTMLElement;
 }
 
@@ -51,6 +66,8 @@ export function getAppElements(): AppElements {
     sportsView: required('sports'),
     adminView: required('admin'),
     marketTitle: required('marketTitle'),
+    scheduleFilters: required('scheduleFilters'),
+    eventSummary: required('eventSummary'),
     eventList: required('eventList'),
     feedLabel: required('feedLabel'),
     feedMessage: required('feedMessage'),
@@ -68,9 +85,12 @@ export function getAppElements(): AppElements {
     stake: required<HTMLInputElement>('stake'),
     slipCount: required('slipCount'),
     potentialReturn: required('potentialReturn'),
+    combinedMultiplier: required('combinedMultiplier'),
+    stakeHelp: required('stakeHelp'),
     emptySlip: required('emptySlip'),
     slipItems: required('slipItems'),
     placePrediction: required<HTMLButtonElement>('placePrediction'),
+    clearSlip: required<HTMLButtonElement>('clearSlip'),
     openCount: required('openCount'),
     openPredictions: required('openPredictions'),
     slipPanel: required('slipPanel'),
@@ -81,11 +101,21 @@ export function getAppElements(): AppElements {
     liveCount: required('liveCount'),
     activeMarketCount: required('activeMarketCount'),
     suspendedCount: required('suspendedCount'),
+    adminCount: required('adminCount'),
     adminDialog: required<HTMLDialogElement>('adminDialog'),
     adminForm: required<HTMLFormElement>('adminForm'),
     adminName: required<HTMLInputElement>('adminName'),
     adminEmail: required<HTMLInputElement>('adminEmail'),
     adminRole: required<HTMLSelectElement>('adminRole'),
+    adminFormError: required('adminFormError'),
+    tourLayer: required('tourLayer'),
+    tourCard: required('tourCard'),
+    tourProgress: required('tourProgress'),
+    tourTitle: required('tourTitle'),
+    tourBody: required('tourBody'),
+    tourBack: required<HTMLButtonElement>('tourBack'),
+    tourNext: required<HTMLButtonElement>('tourNext'),
+    tourClose: required<HTMLButtonElement>('tourClose'),
     toast: required('toast')
   };
 }

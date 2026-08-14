@@ -47,6 +47,15 @@
     display: none;
   }
 
+  .account #accountButton {
+    display: none;
+  }
+
+  .account .demo-trigger {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
   .layout {
     display: block;
   }
@@ -86,6 +95,20 @@
   .section-head {
     align-items: flex-end;
     gap: 10px;
+  }
+
+  .schedule-tools {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .schedule-chips {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .schedule-chips button {
+    white-space: nowrap;
   }
 
   .market-actions {
@@ -133,6 +156,7 @@
 
   .stake-box label,
   .quick-stakes,
+  .stake-help,
   .fineprint {
     display: none;
   }
@@ -151,6 +175,14 @@
     margin: 0;
   }
 
+  .slip-actions {
+    display: contents;
+  }
+
+  .slip-actions > button:first-child {
+    display: none;
+  }
+
   .column-label {
     display: none;
   }
@@ -161,8 +193,10 @@
     padding: 10px 7px;
   }
 
-  .team-logo {
-    display: none;
+  .team-emblem {
+    flex-basis: 20px;
+    width: 20px;
+    height: 20px;
   }
 
   .price {
@@ -191,6 +225,16 @@
 
   .admin-grid .panel {
     grid-column: 1 / -1;
+  }
+
+  .admin-row,
+  .market-row {
+    flex-wrap: wrap;
+  }
+
+  .admin-row > div:nth-child(2),
+  .market-row > div {
+    min-width: 150px;
   }
 
   .admin-head h2 {

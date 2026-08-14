@@ -34,6 +34,22 @@ export function potentialReturn(selections: readonly PredictionSelection[], stak
   return selections.length ? stake * combinedMultiplier(selections) : 0;
 }
 
+export function normalizeStake(value: number, balance: number): number {
+  if (!Number.isFinite(value) || balance <= 0) return 0;
+  return Math.min(Math.max(0, Math.floor(value)), Math.floor(balance));
+}
+
+export function stakeValidationMessage(
+  selections: readonly PredictionSelection[],
+  stake: number,
+  balance: number
+): string {
+  if (!selections.length) return 'Choose an SXC multiplier to build your prediction.';
+  if (!Number.isFinite(stake) || stake < 100) return 'Minimum virtual stake is 100 SXC.';
+  if (stake > balance) return `Maximum available stake is ${Math.floor(balance).toLocaleString()} SXC.`;
+  return 'Ready to place this virtual prediction.';
+}
+
 export function createOpenPrediction(
   selections: readonly PredictionSelection[],
   stake: number

@@ -3,7 +3,8 @@ export const SUPPORTED_SPORTS = ['Cricket', 'Football', 'Basketball', 'Tennis'] 
 export type Sport = (typeof SUPPORTED_SPORTS)[number];
 export type SportFilter = Sport | 'All';
 export type EventStatus = 'live' | 'upcoming' | 'finished';
-export type ViewMode = 'sports' | 'live' | 'results' | 'admin';
+export type ViewMode = 'sports' | 'live' | 'upcoming' | 'results' | 'admin';
+export type ScheduleFilter = 'all' | 'today' | 'tomorrow' | 'later';
 export type AdminRole = 'SUPER_ADMIN' | 'ADMIN' | 'MARKET_MANAGER' | 'SUPPORT_AGENT' | 'VIEWER';
 
 export interface SportScoreMatchDto {
@@ -80,18 +81,22 @@ export interface FeedState {
   refreshing: boolean;
   error: string;
   lastUpdatedAt: Date | null;
+  lastRequestAt: Date | null;
 }
 
 export interface AppState {
   events: SportEvent[];
   selectedSport: SportFilter;
   viewMode: ViewMode;
+  scheduleFilter: ScheduleFilter;
   liveOnly: boolean;
+  visibleEventLimit: number;
   selections: PredictionSelection[];
   balance: number;
   openPredictions: OpenPrediction[];
   admins: AdminUser[];
   audit: AuditEntry[];
+  suspendedEventIds: string[];
   feed: FeedState;
 }
 
@@ -105,4 +110,5 @@ export interface PersistedSession {
   openPredictions: OpenPrediction[];
   admins: AdminUser[];
   audit: AuditEntry[];
+  suspendedEventIds: string[];
 }

@@ -11,6 +11,8 @@ src/
 ├── domain/                 Types, provider mapping, selectors, market rules
 ├── features/
 │   ├── admin/              Admin account and market-control logic
+│   ├── demo/               Accessible guided product tour
+│   ├── live/               Provider refresh/rate-limit policy
 │   └── predictions/        Selection, multiplier, and return logic
 ├── services/               SportScore client and browser persistence
 ├── shared/                 Formatting, hashing, and output safety helpers
@@ -34,13 +36,26 @@ ScoreX uses the free [SportScore API](https://sportscore.com/developers/), disco
 
 - Football, basketball, cricket, and tennis
 - Live, upcoming, and recently completed matches
+- Upcoming matches grouped by local date with Today, Tomorrow and Later filters
 - 90-second refresh interval
+- 60-second manual-refresh guard aligned with the provider cache window
 - Last successful response cached locally
 - Partial provider failures do not remove healthy sport feeds
 - No frontend API key required
 - Required visible `Powered by SportScore` attribution
 
+SportScore documents a free allowance of approximately **10,000 requests per 24 hours per IP** and a **60-second edge cache**. ScoreX requests four sport feeds every 90 seconds only while the page is visible: at most `4 × 960 = 3,840` requests per continuously open browser each day, before cache reuse. Each request asks for the documented maximum of 50 matches.
+
 SportScore supplies match data, not bookmaker odds. ScoreX generates deterministic, virtual-only SXC multipliers and labels them separately from the score provider.
+
+## Product safeguards
+
+- SXC uses an original ScoreX Coin asset and remains virtual-only.
+- The guided demo teaches schedule browsing, outcome selection, virtual staking and tracking without placing anything automatically.
+- Provider team logos fall back to generated initials when a source image fails.
+- Admin creation validates names, emails, roles and duplicate accounts.
+- Market suspensions persist across provider refreshes in the same browser.
+- The interface has keyboard focus indicators, reduced-motion support, status announcements and mobile layouts.
 
 ## Commands
 
