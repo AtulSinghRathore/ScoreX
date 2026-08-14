@@ -141,12 +141,10 @@ export class ScoreXApp {
 
   private async refreshScores(manual = false): Promise<void> {
     if (this.state.feed.refreshing) return;
-    if (manual) {
-      const remaining = refreshCooldownRemainingMs(this.state.feed.lastRequestAt, APP_CONFIG.manualRefreshCooldownMs);
-      if (remaining > 0) {
-        this.showToast(`SportScore refresh available in ${Math.ceil(remaining / 1000)} seconds`);
-        return;
-      }
+    const remaining = refreshCooldownRemainingMs(this.state.feed.lastRequestAt, APP_CONFIG.minimumRequestIntervalMs);
+    if (remaining > 0) {
+      if (manual) this.showToast(`SportScore refresh available in ${Math.ceil(remaining / 1000)} seconds`);
+      return;
     }
     this.state.feed.lastRequestAt = new Date();
     this.state.feed.loading = true;

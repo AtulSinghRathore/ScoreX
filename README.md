@@ -44,7 +44,7 @@ ScoreX uses the free [SportScore API](https://sportscore.com/developers/), disco
 - No frontend API key required
 - Required visible `Powered by SportScore` attribution
 
-SportScore documents a free allowance of approximately **10,000 requests per 24 hours per IP** and a **60-second edge cache**. ScoreX requests four sport feeds every 90 seconds only while the page is visible: at most `4 × 960 = 3,840` requests per continuously open browser each day, before cache reuse. Each request asks for the documented maximum of 50 matches.
+SportScore documents a free allowance of approximately **10,000 requests per 24 hours per IP** and a **60-second edge cache**. ScoreX's automatic schedule requests four sport feeds every 90 seconds only while the page is visible: a baseline of `4 × 960 = 3,840` requests per continuously open browser each day. Manual and automatic refreshes share a 60-second minimum interval, so even continuous manual use is capped at `4 × 1,440 = 5,760` requests per day, before cache reuse. Each request asks for the documented maximum of 50 matches.
 
 SportScore supplies match data, not bookmaker odds. ScoreX generates deterministic, virtual-only SXC multipliers and labels them separately from the score provider.
 

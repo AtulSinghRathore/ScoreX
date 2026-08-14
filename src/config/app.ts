@@ -8,7 +8,7 @@ export const APP_CONFIG = {
   providerDailyRequestLimit: 10_000,
   providerCacheMs: 60_000,
   refreshIntervalMs: 90_000,
-  manualRefreshCooldownMs: 60_000,
+  minimumRequestIntervalMs: 60_000,
   requestTimeoutMs: 12_000,
   sourceIdentifier: 'scorex',
   startingBalance: 25_000,
