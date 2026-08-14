@@ -55,13 +55,16 @@ npm run check
 
 The development server runs at `http://localhost:8080` and the production build is generated in `dist/`.
 
-## Cloudflare Pages
+## Cloudflare Workers deployment
 
+The repository includes `wrangler.jsonc` for Cloudflare Workers static assets. In the **Import a repository** setup screen, use:
+
+- Project name: `scorex`
 - Build command: `npm run build`
-- Build output directory: `dist`
+- Deploy command: `npx wrangler deploy`
 - Root directory: repository root
 
-The `public/_headers` file adds a restrictive Content Security Policy and other browser security headers when deployed on Cloudflare Pages.
+The built `dist` directory is deployed to the `scorex` Worker, SPA fallback routing is enabled, and non-production branches can generate preview versions. The `public/_headers` file adds a restrictive Content Security Policy and other browser security headers to the deployed static assets.
 
 ## Current persistence boundary
 
